@@ -30,12 +30,12 @@
 // │              53  54     │ │ 55                       │
 // ╰──────────────────────────╯ ╰──────────────────────────╯
 //
-// QWERTY letter positions:
-// Row0:  `(0)  1(1)  2(2)  3(3)  4(4)  5(5)  | 6(6)  7(7)  8(8)  9(9)  0(10)  -(11)
-// Row1: Tab(12) Q(13) W(14) E(15) R(16) T(17) | Y(18) U(19) I(20) O(21)  P(22) =(23)
-// Row2: Esc(24) A(25) S(26) D(27) F(28) G(29) | H(30) J(31) K(32) L(33) ;(34)  '(35)
-// Row3: Sft(36) Z(37) X(38) C(39) V(40) B(41) | N(42) M(43) ,(44) .(45) /(46) Sft(47)
-// ThumbL:              48    49    50           |  51   52
+// QWERTY:
+// Row0:  `(0)  1(1)  2(2)  3(3)  4(4)  5(5)  |  6(6)  7(7)  8(8)  9(9)  0(10) -(11)
+// Row1: Tab(12) Q(13) W(14) E(15) R(16) T(17) |  Y(18) U(19) I(20) O(21) P(22) =(23)
+// Row2: Esc(24) A(25) S(26) D(27) F(28) G(29) |  H(30) J(31) K(32) L(33) ;(34) '(35)
+// Row3: Sft(36) Z(37) X(38) C(39) V(40) B(41) |  N(42) M(43) ,(44) .(45) /(46) Sft(47)
+// ThumbL:              48    49    50           |  51    52
 // ThumbL2:                   53    54           |  55
 // ──────────────────────────────────────────────
 
@@ -93,8 +93,9 @@
     combos {
         compatible = "zmk,combos";
 
-        // ── Seus combos pessoais ─────────────────────────────────
-        // Posições baseadas nas LETRAS no QWERTY
+        // ════════════════════════════════════════
+        // SEUS COMBOS PESSOAIS (horizontais)
+        // ════════════════════════════════════════
 
         // `(0) + 1(1) = ESC
         combo_esc {
@@ -161,7 +162,7 @@
         };
 
         // V(40) + C(39) = Backspace
-        combo_bspc {
+        combo_bspc_vc {
             bindings = <&kp BSPC>;
             key-positions = <39 40>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
@@ -169,14 +170,16 @@
         };
 
         // C(39) + X(38) = Del
-        combo_del {
+        combo_del_cx {
             bindings = <&kp DEL>;
             key-positions = <38 39>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // ── Combos urob horizontais — esquerda ───────────────────
+        // ════════════════════════════════════════
+        // COMBOS UROB HORIZONTAIS — esquerda
+        // ════════════════════════════════════════
 
         // W(14) + E(15) = Tab
         combo_tab {
@@ -194,144 +197,146 @@
             timeout-ms = <40>;
         };
 
-        // Z(37) + X(38) = Cut
+        // X(38) + V(40) = Cut
         combo_cut {
             bindings = <&kp LC(X)>;
-            key-positions = <37 38>;
+            key-positions = <38 40>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // Q(13) + W(14) = Copy  (evita conflito com [)
+        // X(38) + C(39) = Copy
         combo_copy {
             bindings = <&kp LC(C)>;
-            key-positions = <13 14>;
+            key-positions = <38 39>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // A(25) + S(26) + D(27) = Paste (3 dedos)
+        // C(39) + V(40) = Paste
         combo_paste {
             bindings = <&kp LC(V)>;
-            key-positions = <25 26 27>;
+            key-positions = <39 40>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // ── Combos urob horizontais — direita ────────────────────
+        // ════════════════════════════════════════
+        // COMBOS UROB HORIZONTAIS — direita
+        // ════════════════════════════════════════
 
-        // U(19) + I(20) = Backspace extra top
-        combo_bspc_top {
+        // U(19) + I(20) = Backspace
+        combo_bspc_ui {
             bindings = <&kp BSPC>;
             key-positions = <19 20>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // I(20) + O(21) = Delete extra top
-        combo_del_top {
+        // I(20) + O(21) = Delete
+        combo_del_io {
             bindings = <&kp DEL>;
             key-positions = <20 21>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <40>;
         };
 
-        // ── Combos urob verticais — esquerda (top→home) ──────────
+        // M(43) + ,(44) = <
+        combo_lt {
+            bindings = <&kp LT>;
+            key-positions = <43 44>;
+            layers = <BASE LAYER_A LAYER_B LAYER_C>;
+            timeout-ms = <40>;
+        };
 
-        // `(0) + Tab(12) = @
+        // ,(44) + .(45) = >
+        combo_gt {
+            bindings = <&kp GT>;
+            key-positions = <44 45>;
+            layers = <BASE LAYER_A LAYER_B LAYER_C>;
+            timeout-ms = <40>;
+        };
+
+        // ════════════════════════════════════════
+        // COMBOS UROB VERTICAIS — esquerda
+        // timeout maior + require-prior-idle
+        // ════════════════════════════════════════
+
+        // W(14) + S(26) = @
         combo_at {
             bindings = <&kp AT>;
-            key-positions = <0 12>;
+            key-positions = <14 26>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // 1(1) + Q(13) = ~
-        combo_tilde {
-            bindings = <&kp TILDE>;
-            key-positions = <1 13>;
-            layers = <BASE LAYER_A LAYER_B LAYER_C>;
-            timeout-ms = <50>;
-            require-prior-idle-ms = <125>;
-        };
-
-        // 2(2) + W(14) = #
+        // E(15) + D(27) = #
         combo_hash {
             bindings = <&kp HASH>;
-            key-positions = <2 14>;
+            key-positions = <15 27>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // 3(3) + E(15) = $
+        // R(16) + F(28) = $
         combo_dllr {
             bindings = <&kp DLLR>;
-            key-positions = <3 15>;
+            key-positions = <16 28>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // 4(4) + R(16) = %
+        // T(17) + G(29) = %
         combo_prcnt {
             bindings = <&kp PRCNT>;
-            key-positions = <4 16>;
+            key-positions = <17 29>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // ── Combos urob verticais — esquerda (home→bottom) ───────
-
-        // Tab(12) + Z(36) -- usa Q(13)+Z(37)
-        // Q(13) + Z(37) = ` grave
+        // S(26) + X(38) = ` grave
         combo_grave {
             bindings = <&kp GRAVE>;
-            key-positions = <13 37>;
-            layers = <BASE LAYER_A LAYER_B LAYER_C>;
-            timeout-ms = <50>;
-            require-prior-idle-ms = <125>;
-        };
-
-        // A(25) + Z(37) = backslash
-        combo_bslh {
-            bindings = <&kp BSLH>;
-            key-positions = <25 37>;
-            layers = <BASE LAYER_A LAYER_B LAYER_C>;
-            timeout-ms = <50>;
-            require-prior-idle-ms = <125>;
-        };
-
-        // S(26) + X(38) = pipe
-        combo_pipe {
-            bindings = <&kp PIPE>;
             key-positions = <26 38>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // D(27) + C(39) = = extra vertical
-        combo_equal_v {
-            bindings = <&kp EQUAL>;
+        // D(27) + C(39) = backslash
+        combo_bslh {
+            bindings = <&kp BSLH>;
             key-positions = <27 39>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // F(28) + V(40) = ~ extra vertical
-        combo_tilde_v {
-            bindings = <&kp TILDE>;
+        // F(28) + V(40) = =
+        combo_equal_v {
+            bindings = <&kp EQUAL>;
             key-positions = <28 40>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // ── Combos urob verticais — direita (top→home) ───────────
+        // G(29) + B(41) = ~
+        combo_tilde {
+            bindings = <&kp TILDE>;
+            key-positions = <29 41>;
+            layers = <BASE LAYER_A LAYER_B LAYER_C>;
+            timeout-ms = <50>;
+            require-prior-idle-ms = <125>;
+        };
+
+        // ════════════════════════════════════════
+        // COMBOS UROB VERTICAIS — direita
+        // ════════════════════════════════════════
 
         // Y(18) + H(30) = ^
         combo_caret {
@@ -369,18 +374,16 @@
             require-prior-idle-ms = <125>;
         };
 
-        // ── Combos urob verticais — direita (home→bottom) ────────
-
-        // H(30) + N(42) = _ extra vertical
+        // M(43) + K(32) = _
         combo_under_v {
             bindings = <&kp UNDER>;
-            key-positions = <30 42>;
+            key-positions = <32 43>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
             timeout-ms = <50>;
             require-prior-idle-ms = <125>;
         };
 
-        // J(31) + M(43) = - extra vertical
+        // J(31) + M(43) = -
         combo_minus_v {
             bindings = <&kp MINUS>;
             key-positions = <31 43>;
@@ -398,8 +401,8 @@
             require-prior-idle-ms = <125>;
         };
 
-        // L(33) + .(45) = | extra vertical
-        combo_pipe_v {
+        // L(33) + .(45) = |
+        combo_pipe {
             bindings = <&kp PIPE>;
             key-positions = <33 45>;
             layers = <BASE LAYER_A LAYER_B LAYER_C>;
@@ -407,7 +410,9 @@
             require-prior-idle-ms = <125>;
         };
 
-        // ── Mouse clicks ─────────────────────────────────────────
+        // ════════════════════════════════════════
+        // MOUSE CLICKS
+        // ════════════════════════════════════════
 
         rh_leftClick {
             bindings = <&mkp LCLK>;
@@ -439,7 +444,7 @@
             key-positions = <48 49 50>;
         };
 
-        // Dentro da MOUSE layer: sniper e scroll
+        // Dentro da MOUSE layer
         mouse_to_sniper {
             bindings = <&mo SNIPER>;
             key-positions = <52 55>;
@@ -499,54 +504,59 @@
         compatible = "zmk,keymap";
 
         // ── 0: BASE ─────────────────────────────────────────────
-        // QWERTY com home row mods
+        // QWERTY + home row mods
         // ThumbL: LGUI | [A/SPC] | [B/TAB]
         // ThumbR: RET  | [C/BSPC] | trackball→MOUSE
         base_layer {
             label = "BASE";
             bindings = <
-&kp GRAVE      &kp N1          &kp N2         &kp N3           &kp N4            &kp N5             &kp N6    &kp N7            &kp N8          &kp N9         &kp N0           &kp MINUS
-&kp TAB        &kp Q           &kp W          &kp E            &kp R             &kp T              &kp Y     &kp U             &kp I           &kp O          &kp P            &kp EQUAL
-&kp ESC        &hml LGUI A     &hml LALT S    &hml LCTL D      &hml LSFT F       &kp G              &kp H     &hmr RSFT J       &hmr RCTL K     &hmr RALT L    &hmr RGUI SEMI   &kp SQT
-&kp LSFT       &lt SCROLL Z    &kp X          &kp C            &kp V             &kp B              &kp N     &kp M             &kp COMMA       &kp DOT        &lt SCROLL FSLH  &kp RSFT
-                                              &kp LGUI         &lt LAYER_A SPACE &lt LAYER_B TAB    &kp RET   &lt LAYER_C BSPC
-                                                               &mkp RCLK         &mkp LCLK          &mo SNIPER
+&kp GRAVE      &kp N1          &kp N2         &kp N3            &kp N4            &kp N5              &kp N6    &kp N7             &kp N8          &kp N9         &kp N0           &kp MINUS
+&kp TAB        &kp Q           &kp W          &kp E             &kp R             &kp T               &kp Y     &kp U              &kp I           &kp O          &kp P            &kp EQUAL
+&kp ESC        &hml LGUI A     &hml LALT S    &hml LCTL D       &hml LSFT F       &kp G               &kp H     &hmr RSFT J        &hmr RCTL K     &hmr RALT L    &hmr RGUI SEMI   &kp SQT
+&kp LSFT       &lt SCROLL Z    &kp X          &kp C             &kp V             &kp B               &kp N     &kp M              &kp COMMA       &kp DOT        &lt SCROLL FSLH  &kp RSFT
+                                              &kp LGUI          &lt LAYER_A SPACE &lt LAYER_B TAB     &kp RET   &lt LAYER_C BSPC
+                                                                &mkp RCLK         &mkp LCLK           &mo SNIPER
             >;
         };
 
         // ── 1: LAYER_A — hold SPACE ──────────────────────────────
-        // Esquerda: NAV1 (Inverted-T normal)
-        // Direita:  NUM  (numpad Miryoku FLIP)
+        // Esquerda: NAV1 — Inverted-T (setas normais)
+        //           PgUp/PgDn acima/abaixo do UP
+        //           Home/End nos lados do DOWN
+        //           Undo/Cut/Copy/Paste/Redo na bottom row
+        // Direita:  NUM — numpad Miryoku FLIP
+        //           7 8 9 / 4 5 6 / 1 2 3 / 0 . Enter
         layer_a {
             label = "NAV+NUM";
             bindings = <
-&trans  &trans      &trans      &trans      &trans      &trans          &trans    &trans    &trans    &trans    &trans    &trans
-&trans  &trans      &kp PG_UP   &kp UP      &kp PG_DN   &kp INS         &trans    &kp N7    &kp N8    &kp N9    &trans    &trans
-&trans  &kp LGUI    &kp HOME    &kp DOWN    &kp END     &trans          &trans    &kp N4    &kp N5    &kp N6    &kp RGUI  &trans
-&trans  &kp LC(Z)   &kp LC(X)   &kp LC(C)   &kp LC(V)   &kp LC(Y)       &trans    &kp N1    &kp N2    &kp N3    &trans    &trans
-                                &trans      &trans      &trans          &kp RET   &kp N0
-                                            &trans      &trans          &kp DOT
+&trans  &trans       &trans       &trans       &trans       &trans          &trans   &trans   &trans   &trans   &trans    &trans
+&trans  &trans       &kp PG_UP    &kp UP       &kp PG_DN    &kp INS         &trans   &kp N7   &kp N8   &kp N9   &trans    &trans
+&trans  &kp LGUI     &kp HOME     &kp DOWN     &kp END      &trans          &trans   &kp N4   &kp N5   &kp N6   &kp RGUI  &trans
+&trans  &kp LC(Z)    &kp LC(X)    &kp LC(C)    &kp LC(V)    &kp LC(Y)       &trans   &kp N1   &kp N2   &kp N3   &trans    &trans
+                                  &trans       &trans       &trans          &kp RET  &kp N0
+                                               &trans       &trans          &kp DOT
             >;
         };
 
         // ── 2: LAYER_B — hold TAB ────────────────────────────────
-        // Esquerda: NAV2 (Inverted-T + Shift = seleção)
-        // Direita:  SYM  (símbolos Miryoku FLIP)
+        // Esquerda: NAV2 — Inverted-T com Shift (seleção)
+        //           mesmas posições do NAV1 mas com Shift
+        // Direita:  SYM — símbolos Miryoku FLIP
         layer_b {
             label = "NAV2+SYM";
             bindings = <
-&trans  &trans          &trans           &trans          &trans           &trans          &trans     &kp LBRC   &kp AMPS   &kp STAR    &kp LPAR    &trans
-&trans  &trans          &kp LS(PG_UP)    &kp LS(UP)      &kp LS(PG_DN)    &trans          &trans     &kp RBRC   &kp DLLR   &kp PRCNT   &kp CARET   &trans
-&trans  &kp LGUI        &kp LS(HOME)     &kp LS(DOWN)    &kp LS(END)      &trans          &trans     &kp LPAR   &kp EXCL   &kp AT      &kp HASH    &trans
-&trans  &kp LS(LC(Z))   &kp LS(LC(X))   &kp LS(LC(C))   &kp LS(LC(V))    &trans          &trans     &kp TILDE  &kp GRAVE  &kp PIPE    &kp BSLH    &trans
-                                         &trans          &trans           &trans          &kp RPAR   &kp UNDER
-                                                         &trans           &trans          &kp MINUS
+&trans  &trans           &trans           &trans           &trans           &trans          &trans     &kp LBRC   &kp AMPS    &kp STAR    &kp LPAR    &trans
+&trans  &trans           &kp LS(PG_UP)    &kp LS(UP)       &kp LS(PG_DN)    &trans          &trans     &kp RBRC   &kp DLLR    &kp PRCNT   &kp CARET   &trans
+&trans  &kp LGUI         &kp LS(HOME)     &kp LS(DOWN)     &kp LS(END)      &trans          &trans     &kp LPAR   &kp EXCL    &kp AT      &kp HASH    &trans
+&trans  &kp LS(LC(Z))    &kp LS(LC(X))    &kp LS(LC(C))    &kp LS(LC(V))    &trans          &trans     &kp TILDE  &kp GRAVE   &kp PIPE    &kp BSLH    &trans
+                                          &trans           &trans           &trans          &kp RPAR   &kp UNDER
+                                                           &trans           &trans          &kp MINUS
             >;
         };
 
         // ── 3: LAYER_C — hold BSPC ───────────────────────────────
-        // Esquerda: MEDIA (mídia + Bluetooth)
-        // Direita:  FUN   (F1-F12 Miryoku FLIP)
+        // Esquerda: MEDIA — controles de mídia + Bluetooth
+        // Direita:  FUN   — F1-F12 Miryoku FLIP
         layer_c {
             label = "MEDIA+FUN";
             bindings = <
@@ -561,7 +571,7 @@
 
         // ── 4: MOUSE — acionado pela trackball ───────────────────
         // Esquerda: mouse keys Miryoku
-        // Direita:  atalhos sniper/scroll
+        // Direita:  atalhos sniper/scroll via combos
         mouse_layer {
             label = "MOUSE";
             bindings = <
