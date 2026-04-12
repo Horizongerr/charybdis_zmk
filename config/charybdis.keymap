@@ -492,11 +492,11 @@
         layer_a {
             label = "NAV+NUM";
             bindings = <
-&trans  &trans     &trans     &trans     &trans     &trans       &trans     &trans      &trans  &trans  &trans    &trans
-&trans  &kp PG_UP  &kp HOME   &kp UP     &kp END    &kp INS      &trans     &kp N7      &kp N8  &kp N9  &trans    &trans
-&trans  &kp PG_DN  &kp LEFT   &kp DOWN   &kp RIGHT  &kp CAPS     &trans     &kp N4      &kp N5  &kp N6  &kp RGUI  &trans
-&trans  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(Y)    &trans     &kp N1      &kp N2  &kp N3  &trans    &trans
-                              &trans     &trans     &trans       &kp N0     &kp PERIOD
+&trans  &trans     &trans     &trans     &trans     &trans       &trans                &trans      &trans  &trans  &trans             &trans
+&trans  &kp PG_UP  &kp HOME   &kp UP     &kp END    &kp INS      &kp LEFT_BRACKET      &kp N7      &kp N8  &kp N9  &kp RIGHT_BRACKET  &trans
+&trans  &kp PG_DN  &kp LEFT   &kp DOWN   &kp RIGHT  &kp CAPS     &kp EQUAL             &kp N4      &kp N5  &kp N6  &kp SEMICOLON      &trans
+&trans  &kp LC(Z)  &kp LC(X)  &kp LC(C)  &kp LC(V)  &kp LC(Y)    &kp NON_US_BACKSLASH  &kp N1      &kp N2  &kp N3  &kp GRAVE          &trans
+                              &trans     &trans     &trans       &kp N0                &kp PERIOD
                                          &trans     &trans       &kp MINUS
             >;
         };
