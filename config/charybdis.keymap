@@ -513,7 +513,7 @@
 &trans  &kp LS(PG_UP)  &kp LS(HOME)   &kp LS(UP)     &kp LS(END)    &kp LS(INS)      &trans     &kp RBRC   &kp DLLR   &kp PRCNT  &kp CARET  &trans
 &trans  &kp LS(PG_DN)  &kp LS(LEFT)   &kp LS(DOWN)   &kp LS(RIGHT)  &kp CAPS         &trans     &kp LPAR   &kp EXCL   &kp AT     &kp HASH   &trans
 &trans  &kp LS(LC(Z))  &kp LS(LC(X))  &kp LS(LC(C))  &kp LS(LC(V))  &kp LS(LC(Y))    &trans     &kp TILDE  &kp GRAVE  &kp PIPE   &kp BSLH   &trans
-                                      &trans         &trans         &trans           &kp RPAR   &kp UNDER
+                                      &trans         &trans         &trans           &kp N9     &kp N0
                                                      &trans         &trans           &kp MINUS
             >;
         };
