@@ -179,7 +179,11 @@ jobs:
       - name: West Init
         working-directory: ${{ env.base_dir }}
         run: west init -l "${{ env.base_dir }}/${{ inputs.config_path }}"
-
+        
+      - name: List west modules
+        working-directory: ${{ env.base_dir }}
+        run: west list
+        
       - name: West Update
         working-directory: ${{ env.base_dir }}
         run: west update
