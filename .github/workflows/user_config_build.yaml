@@ -183,7 +183,17 @@ jobs:
       - name: West Update
         working-directory: ${{ env.base_dir }}
         run: west update
-
+        
+      - name: Debug module paths
+        working-directory: ${{ env.base_dir }}
+        run: |
+          echo "=== base_dir ===" 
+          echo ${{ env.base_dir }}
+          echo "=== contents ==="
+          ls -la ${{ env.base_dir }}
+          echo "=== pmw3610 search ==="
+          find / -name "*pmw3610*" -type d 2>/dev/null || echo "not found"
+    
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
