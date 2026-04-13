@@ -75,12 +75,12 @@ jobs:
           snippet: ${{ matrix.snippet }}
         run: |
           if [ -e zephyr/module.yml ]; then
-            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE};${new_tmp_dir}/zmk-pmw3610-driver;${new_tmp_dir}/zmk-split-peripheral-input-relay;${new_tmp_dir}/zmk-input-behavior-listener'"
-            new_tmp_dir="${TMPDIR:-/tmp}/zmk-config"
-            mkdir -p "${new_tmp_dir}"
-            echo "base_dir=${new_tmp_dir}" >> $GITHUB_ENV
+              new_tmp_dir="${TMPDIR:-/tmp}/zmk-config"
+              mkdir -p "${new_tmp_dir}"
+              echo "base_dir=${new_tmp_dir}" >> $GITHUB_ENV
+              export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE};${new_tmp_dir}/zmk-pmw3610-driver;${new_tmp_dir}/zmk-split-peripheral-input-relay;${new_tmp_dir}/zmk-input-behavior-listener'"
           else
-            echo "base_dir=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
+              echo "base_dir=${GITHUB_WORKSPACE}" >> $GITHUB_ENV
           fi
 
           if [ -n "${snippet}" ]; then
