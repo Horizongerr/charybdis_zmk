@@ -187,7 +187,14 @@ jobs:
       - name: West Update
         working-directory: ${{ env.base_dir }}
         run: west update
-    
+        
+      - name: Debug west modules
+          working-directory: ${{ env.base_dir }}
+          run: |
+            west list
+            echo "---"
+            ls ${{ env.base_dir }}
+          
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
