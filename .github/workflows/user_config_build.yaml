@@ -75,7 +75,7 @@ jobs:
           snippet: ${{ matrix.snippet }}
         run: |
           if [ -e zephyr/module.yml ]; then
-            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE}'"
+            export zmk_load_arg=" -DZMK_EXTRA_MODULES='${GITHUB_WORKSPACE};${new_tmp_dir}/zmk-pmw3610-driver;${new_tmp_dir}/zmk-split-peripheral-input-relay;${new_tmp_dir}/zmk-input-behavior-listener'"
             new_tmp_dir="${TMPDIR:-/tmp}/zmk-config"
             mkdir -p "${new_tmp_dir}"
             echo "base_dir=${new_tmp_dir}" >> $GITHUB_ENV
@@ -193,17 +193,6 @@ jobs:
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
-        
-      - name: Set extra modules
-        shell: sh -x {0}
-        run: |
-          pmw=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-pmw3610-driver" -type d)
-          relay=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-split-peripheral-input-relay" -type d)
-          listener=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-input-behavior-listener" -type d)
-          shield="${{ matrix.shield }}"
-          existing="${{ env.extra_cmake_args }}"
-          new_modules="/__w/charybdis_zmk/charybdis_zmk;${pmw};${relay};${listener}"
-          echo "extra_cmake_args=${existing} -DZMK_EXTRA_MODULES='${new_modules}'" >> $GITHUB_ENV
           
       - name: List west modules
         working-directory: ${{ env.base_dir }}
