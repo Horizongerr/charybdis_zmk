@@ -189,18 +189,22 @@ jobs:
         run: |
           west list
           find ${{ env.base_dir }} -name "module.yml" 2>/dev/null
-          
-      - name: Debug west modules
-        working-directory: ${{ env.base_dir }}
-        run: |
-          west list
-          echo "---"
-          ls ${{ env.base_dir }}
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
         run: west zephyr-export
         
+      - name: Set extra modules
+        shell: sh -x {0}
+        run: |
+          pmw=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-pmw3610-driver" -type d)
+          relay=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-split-peripheral-input-relay" -type d)
+          listener=$(find /tmp/zmk-config -maxdepth 1 -name "zmk-input-behavior-listener" -type d)
+          echo "PMW: $pmw"
+          echo "RELAY: $relay"  
+          echo "LISTENER: $listener"
+          echo "extra_modules=${pmw};${relay};${listener}" >> $GITHUB_ENV
+          
       - name: List west modules
         working-directory: ${{ env.base_dir }}
         run: west list
@@ -208,7 +212,7 @@ jobs:
       - name: West Build (${{ env.display_name }})
         working-directory: ${{ env.base_dir }}
         shell: sh -x {0}
-        run: west build --pristine -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/${{ inputs.config_path }} ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }}
+        run: west build --pristine -s zmk/app -d "${{ env.build_dir }}" -b "${{ matrix.board }}" ${{ env.extra_west_args }} -- -DZMK_CONFIG=${{ env.base_dir }}/${{ inputs.config_path }} ${{ env.extra_cmake_args }} ${{ matrix.cmake-args }} ${extra_modules:+-DZMK_EXTRA_MODULES="/__w/charybdis_zmk/charybdis_zmk;${{ env.extra_modules }}"}
 
       - name: ${{ env.display_name }} Kconfig file
         run: |
