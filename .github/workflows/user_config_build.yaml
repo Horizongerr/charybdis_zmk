@@ -188,7 +188,7 @@ jobs:
         working-directory: ${{ env.base_dir }}
         run: |
           west list
-          find ${{ env.base_dir }} -name "module.yml" 2>/dev/null
+          find ${{ env.base_dir }} -name "module.yml"
 
       - name: West Zephyr export
         working-directory: ${{ env.base_dir }}
